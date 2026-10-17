@@ -2112,50 +2112,243 @@
             align-items: center;
         }
 
-        .why-image-wrap {
-            position: relative;
+        /* VSM OFFICIAL BUSINESS INFO CARD (100% REAL VERIFIED INFO) */
+        .why-info-card {
+            background: linear-gradient(145deg, #071426 0%, #0d1e33 60%, #10253D 100%);
+            border: 1px solid rgba(245, 174, 35, 0.35);
             border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            aspect-ratio: 4 / 3;
-            background: #E2E8F0;
-        }
-
-        .why-image-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .glass-info {
-            position: absolute;
-            left: 20px;
-            bottom: 20px;
-            padding: 18px 22px;
-            border-radius: var(--radius-md);
+            padding: 32px 28px;
             color: var(--white);
-            background: rgba(7, 20, 38, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 20px 50px rgba(7, 20, 38, 0.4), 0 0 30px rgba(245, 174, 35, 0.08);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
-        .glass-info strong {
-            display: block;
+        .why-info-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(245, 174, 35, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .why-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .why-card-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: contain;
+            border: 1px solid rgba(245, 174, 35, 0.4);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            padding: 2px;
+            flex-shrink: 0;
+        }
+
+        .why-card-title h3 {
             font-family: var(--font-heading);
-            color: var(--gold);
-            font-size: 28px;
-            font-weight: 900;
-            line-height: 1;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.2;
         }
 
-        .glass-info span {
-            font-size: 12px;
+        .why-card-title h3 span {
+            color: var(--gold);
+        }
+
+        .why-card-owner {
+            font-size: 13px;
             color: #CBD5E1;
-            font-weight: 500;
             margin-top: 4px;
-            display: block;
+        }
+
+        .why-card-owner strong {
+            color: var(--white);
+        }
+
+        .why-card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(22, 185, 87, 0.18);
+            border: 1px solid rgba(22, 185, 87, 0.4);
+            color: #22c55e;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* REAL BUSINESS SPECS MATRIX */
+        .why-specs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .why-spec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .why-spec-item:hover {
+            background: rgba(245, 174, 35, 0.06);
+            border-color: rgba(245, 174, 35, 0.25);
+        }
+
+        .why-spec-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(245, 174, 35, 0.15);
+            color: var(--gold);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .why-spec-icon svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+        }
+
+        .why-spec-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .why-spec-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--gold);
+        }
+
+        .why-spec-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .why-spec-value a {
+            color: var(--white);
+            text-decoration: underline;
+            text-decoration-color: rgba(245, 174, 35, 0.5);
+        }
+
+        .why-spec-value a:hover {
+            color: var(--gold);
+        }
+
+        /* REAL FLEET BRANDS PILLS */
+        .why-brands-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .why-brand-pill {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #E2E8F0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-weight: 600;
+        }
+
+        /* CARD ACTION BUTTONS */
+        .why-card-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 2px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .why-btn-call {
+            min-height: 42px;
+            border-radius: 8px;
+            background: var(--gold);
+            color: var(--navy-deep);
+            font-family: var(--font-heading);
+            font-size: 13px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px var(--gold-glow);
+        }
+
+        .why-btn-call:hover {
+            background: #ffbd3a;
+            transform: translateY(-2px);
+        }
+
+        .why-btn-call svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+
+        .why-btn-wa {
+            min-height: 42px;
+            border-radius: 8px;
+            background: var(--wa-green);
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 13px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px var(--wa-glow);
+        }
+
+        .why-btn-wa:hover {
+            background: var(--wa-green-hover);
+            transform: translateY(-2px);
+        }
+
+        .why-btn-wa svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
         }
 
         .why-content .eyebrow {
@@ -3724,13 +3917,76 @@
         <section class="why-section" id="why-vsm">
             <div class="container">
                 <div class="why-grid">
-                    <div class="why-image-wrap reveal-left">
-                        <img src="images/hero-fleet.jpg"
-                            alt="VSM Tours & Travels Premium Fleet in Hyderabad" loading="lazy"
-                            onerror="handleImageFallback(this, 'VSM Tours & Travels')">
-                        <div class="glass-info">
-                            <strong>24×7</strong>
-                            <span>All Vehicles Available</span>
+                    <!-- REAL BUSINESS INFO CARD (100% AUTHENTIC CLIENT DATA) -->
+                    <div class="why-info-card reveal-left">
+                        <div class="why-card-header">
+                            <img src="images/vsm-logo.png" alt="VSM Tours & Travels Official Logo" class="why-card-logo">
+                            <div class="why-card-title">
+                                <h3>VSM <span>TOURS & TRAVELS</span></h3>
+                                <div class="why-card-owner">Managing Director: <strong>Vinod Kumar Singh</strong></div>
+                                <span class="why-card-badge">✓ Verified & Registered &bull; 24×7 Active</span>
+                            </div>
+                        </div>
+
+                        <div class="why-specs-list">
+                            <div class="why-spec-item">
+                                <div class="why-spec-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                </div>
+                                <div class="why-spec-info">
+                                    <span class="why-spec-label">Headquarters / Base</span>
+                                    <span class="why-spec-value">Kondapur, Hyderabad, Telangana (Near HITEC City)</span>
+                                </div>
+                            </div>
+
+                            <div class="why-spec-item">
+                                <div class="why-spec-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                </div>
+                                <div class="why-spec-info">
+                                    <span class="why-spec-label">Direct 24/7 Phone Numbers</span>
+                                    <span class="why-spec-value">
+                                        <a href="tel:+919866430088">9866430088</a> &bull; <a href="tel:+919966700040">9966700040</a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="why-spec-item">
+                                <div class="why-spec-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17zM7.5 15c-.83 0-1.5-.67-1.5-1.5S6.67 12 7.5 12s1.5.67 1.5 1.5S8.33 15 7.5 15zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                                </div>
+                                <div class="why-spec-info">
+                                    <span class="why-spec-label">Fleet Available (By Brand)</span>
+                                    <div class="why-brands-row">
+                                        <span class="why-brand-pill">Toyota (Innova, Crysta, Etios, Qualis)</span>
+                                        <span class="why-brand-pill">Maruti Suzuki Swift Dzire</span>
+                                        <span class="why-brand-pill">Chevrolet Tavera</span>
+                                        <span class="why-brand-pill">Force Urbania &amp; Tempo Traveller</span>
+                                        <span class="why-brand-pill">Luxury AC Buses (22 to 50 Seater)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="why-spec-item">
+                                <div class="why-spec-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                                </div>
+                                <div class="why-spec-info">
+                                    <span class="why-spec-label">Hotels &amp; Hospitality</span>
+                                    <span class="why-spec-value">24/7 Hotels for stay, luxury suites, parties &amp; functions, business meetings.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="why-card-actions">
+                            <a href="tel:+919866430088" class="why-btn-call">
+                                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                Call 9866430088
+                            </a>
+                            <a href="https://wa.me/919866430088?text=Hello%20VSM%20Tours%20%26%20Travels%2C%20I%20want%20to%20book%20a%20vehicle%20or%20hotel%20stay." target="_blank" rel="noopener" class="why-btn-wa">
+                                <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.5C9.36 7.5 9.09 7.56 8.86 7.81C8.63 8.06 8 8.65 8 9.86C8 11.07 8.88 12.24 9 12.4C9.13 12.57 10.74 15.03 13.2 16.1C13.79 16.35 14.25 16.51 14.6 16.62C15.2 16.81 15.74 16.78 16.17 16.72C16.66 16.64 17.67 16.1 17.88 15.52C18.09 14.94 18.09 14.44 18.03 14.34C17.97 14.24 17.8 14.18 17.55 14.05C17.3 13.93 16.07 13.32 15.84 13.24C15.61 13.15 15.45 13.11 15.28 13.36C15.11 13.61 14.64 14.18 14.5 14.34C14.36 14.5 14.22 14.53 13.97 14.4C13.72 14.27 12.92 14.01 11.97 13.16C11.23 12.5 10.73 11.69 10.59 11.44C10.45 11.19 10.57 11.06 10.7 10.93C10.81 10.82 10.95 10.64 11.08 10.49C11.2 10.34 11.24 10.23 11.32 10.07C11.41 9.9 11.37 9.76 11.31 9.63C11.24 9.5 10.75 8.3 10.54 7.81C10.34 7.33 10.14 7.39 9.98 7.39C9.84 7.39 9.68 7.5 9.53 7.5Z"/></svg>
+                                WhatsApp Booking
+                            </a>
                         </div>
                     </div>
                     <div class="why-content reveal-right">
