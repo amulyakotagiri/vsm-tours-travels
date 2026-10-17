@@ -1990,7 +1990,15 @@
 
         @media (max-width: 480px) {
             .fleet-actions {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .btn-fleet-wa,
+            .btn-fleet-book {
+                min-height: 40px;
+                padding: 0 8px;
+                font-size: 12px;
+                gap: 5px;
             }
         }
 
@@ -2589,7 +2597,6 @@
         }
 
         @media (max-width: 860px) {
-
             .desktop-nav-links,
             .desktop-contact {
                 display: none;
@@ -2601,7 +2608,7 @@
 
             .why-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 32px;
             }
 
             .booking-content {
@@ -2616,96 +2623,361 @@
             .booking-btn {
                 flex: 1;
             }
+
+            /* Hide floating back-to-top button on mobile to prevent blocking content */
+            .back-to-top {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 48px 0;
+            }
+
+            .section-heading {
+                margin: 0 auto 26px;
+            }
+
+            .section-heading h2 {
+                font-size: clamp(23px, 6vw, 30px);
+                letter-spacing: -0.8px;
+                margin-bottom: 8px;
+            }
+
+            .section-heading p {
+                font-size: 13.5px;
+                line-height: 1.55;
+            }
+
+            .gold-line {
+                margin: 0 auto 10px;
+            }
+
+            /* Modern App-Style Horizontally Scrollable Fleet Filter Strip */
+            .fleet-filter-bar {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 4px 16px 14px;
+                margin: 0 -4% 20px;
+                gap: 8px;
+                scrollbar-width: none;
+            }
+
+            .fleet-filter-bar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .fleet-filter-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
         }
 
         @media (max-width: 640px) {
+            :root {
+                --header-height: 64px;
+                --header-height-scrolled: 64px;
+            }
+
             body {
-                padding-top: var(--header-height-scrolled);
-                padding-bottom: 74px;
-                /* Ensure mobile CTA bar does NOT obscure content */
+                padding-top: 64px;
+                padding-bottom: 78px;
+                /* Extra padding ensuring mobile sticky CTA never clips bottom content */
             }
 
             .header,
             .header.scrolled {
-                height: var(--header-height-scrolled);
+                height: 64px;
             }
 
+            .brand-logo-img {
+                height: 38px;
+                max-width: 66px;
+            }
+
+            .brand-name {
+                font-size: 15px;
+                letter-spacing: -0.2px;
+            }
+
+            .brand-location {
+                font-size: 10px;
+            }
+
+            .mobile-menu-toggle {
+                width: 38px;
+                height: 38px;
+            }
+
+            .mobile-nav-panel {
+                top: 64px;
+                padding: 20px 16px;
+            }
+
+            /* HERO SLIDER MOBILE PERFECTION */
             .hero-slider {
-                height: clamp(520px, 86vh, 620px);
+                height: clamp(540px, 86vh, 640px);
             }
 
+            /* Balanced gradient so video and fleet images remain clearly visible */
             .hero-slide::before {
                 background: linear-gradient(180deg,
-                        rgba(7, 20, 38, 0.88) 0%,
-                        rgba(7, 20, 38, 0.85) 55%,
-                        rgba(7, 20, 38, 0.96) 100%);
+                        rgba(7, 20, 38, 0.78) 0%,
+                        rgba(7, 20, 38, 0.38) 36%,
+                        rgba(7, 20, 38, 0.70) 74%,
+                        rgba(7, 20, 38, 0.95) 100%) !important;
             }
 
             .hero-content {
-                padding: 24px 0 80px;
+                padding: 16px 0 60px;
+                text-align: center;
+                align-items: center;
+                max-width: 100%;
+            }
+
+            .hero-badge {
+                font-size: 10px;
+                letter-spacing: 0.8px;
+                padding: 5px 12px;
+                margin-bottom: 12px;
+                white-space: normal;
+                line-height: 1.4;
+                max-width: 320px;
             }
 
             .hero-content h1 {
-                font-size: 32px;
-                letter-spacing: -1.2px;
+                font-size: clamp(28px, 7.8vw, 36px);
+                letter-spacing: -1px;
                 line-height: 1.15;
+                margin-bottom: 10px;
             }
 
             .hero-content p {
-                font-size: 14px;
+                font-size: 13px;
+                line-height: 1.5;
+                max-width: 330px;
+                margin: 0 auto 18px;
+                color: #E2E8F0;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
             }
 
             .hero-actions {
                 width: 100%;
+                max-width: 330px;
                 display: grid;
-                grid-template-columns: 1fr;
-                gap: 10px;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                margin: 0 auto;
             }
 
             .hero-btn {
-                width: 100%;
+                min-height: 44px;
+                padding: 0 10px;
+                font-size: 13px;
+                font-weight: 800;
+                white-space: nowrap;
             }
 
-            .slider-prev {
-                left: 10px;
+            /* HIDE INTRUSIVE SIDE ARROWS ON MOBILE (Users swipe or tap dots) */
+            .slider-arrow {
+                display: none !important;
             }
 
-            .slider-next {
-                right: 10px;
+            .slider-dots {
+                bottom: 20px;
+                gap: 8px;
             }
 
+            .slider-dot {
+                width: 20px;
+                height: 4px;
+            }
+
+            .slider-dot.active {
+                width: 36px;
+            }
+
+            /* QUICK STATS AS 2x2 APP TILES */
+            .quick-wrap {
+                margin-top: -16px;
+                position: relative;
+                z-index: 25;
+            }
+
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                border-radius: var(--radius-md);
+            }
+
+            .quick-item {
+                padding: 14px 12px;
+                gap: 10px;
+                border-right: none;
+                border-bottom: none;
+            }
+
+            .quick-item:nth-child(1),
+            .quick-item:nth-child(3) {
+                border-right: 1px solid var(--border-light);
+            }
+
+            .quick-item:nth-child(1),
+            .quick-item:nth-child(2) {
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            .quick-icon-box {
+                width: 38px;
+                height: 38px;
+                border-radius: 9px;
+            }
+
+            .quick-icon-box svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .quick-text strong {
+                font-size: 15px;
+            }
+
+            .quick-text span {
+                font-size: 11px;
+            }
+
+            /* GRIDS COLLAPSE CLEANLY ON MOBILE */
             .fleet-grid,
             .service-grid,
-            .quick-grid,
             .contact-grid,
             .footer-grid,
             .benefits {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
-            .quick-item {
-                border-right: 0;
-                border-bottom: 1px solid var(--border-light);
+            /* FLEET CARDS COMPACT & TIGHT */
+            .fleet-card {
+                border-radius: var(--radius-md);
             }
 
-            .quick-item:last-child {
-                border-bottom: 0;
+            .fleet-body {
+                padding: 16px 14px;
             }
 
+            .fleet-body h3 {
+                font-size: 18px;
+                margin-bottom: 4px;
+            }
+
+            .fleet-body p {
+                font-size: 12.5px;
+                margin-bottom: 12px;
+                line-height: 1.45;
+            }
+
+            .fleet-list {
+                gap: 6px;
+                margin-bottom: 14px;
+            }
+
+            .fleet-list li {
+                padding: 5px 8px;
+                font-size: 11px;
+            }
+
+            .fleet-actions {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+            }
+
+            .btn-fleet-wa,
+            .btn-fleet-book {
+                min-height: 40px !important;
+                padding: 0 8px !important;
+                font-size: 12px !important;
+                gap: 5px !important;
+            }
+
+            .btn-fleet-wa svg,
+            .btn-fleet-book svg {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            /* SERVICES */
+            .service-card {
+                padding: 18px 16px;
+            }
+
+            .service-card h3 {
+                font-size: 17px;
+            }
+
+            .service-card p {
+                font-size: 13px;
+            }
+
+            /* BOOKING BANNER */
             .booking-box {
-                padding: 36px 24px;
+                padding: 26px 18px;
+                border-radius: var(--radius-md);
+                text-align: center;
+            }
+
+            .booking-content h2 {
+                font-size: 22px;
+                letter-spacing: -0.6px;
+            }
+
+            .booking-content p {
+                font-size: 13px;
+                margin-top: 6px;
             }
 
             .booking-actions {
                 flex-direction: column;
+                gap: 8px;
+                margin-top: 16px;
             }
 
             .booking-btn {
                 width: 100%;
+                min-height: 44px;
+                font-size: 13px;
             }
 
+            /* TRUST BAR 2x2 */
+            .trust-bar {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 18px 14px !important;
+            }
+
+            .trust-item strong {
+                font-size: 22px !important;
+            }
+
+            .trust-item span {
+                font-size: 11px !important;
+            }
+
+            /* CONTACT & FOOTER */
             .contact-card {
-                padding: 24px;
+                padding: 20px 16px;
+            }
+
+            footer {
+                padding: 44px 0 24px;
+            }
+
+            .footer-grid {
+                gap: 28px;
             }
 
             /* FIXED MOBILE CALL / WHATSAPP BAR */
@@ -2720,15 +2992,15 @@
                 gap: 8px;
                 padding: 8px 12px;
                 padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-                background: rgba(7, 20, 38, 0.95);
-                border-top: 1px solid rgba(245, 174, 35, 0.25);
+                background: rgba(7, 20, 38, 0.96);
+                border-top: 1px solid rgba(245, 174, 35, 0.35);
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
-                box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
             }
 
             .mobile-cta a {
-                min-height: 46px;
+                min-height: 44px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
