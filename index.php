@@ -366,6 +366,15 @@
             width: 100%;
         }
 
+        .desktop-nav-links a.active {
+            color: var(--gold) !important;
+            font-weight: 700;
+        }
+
+        .desktop-nav-links a.active::after {
+            width: 100% !important;
+        }
+
         .desktop-contact {
             display: flex;
             align-items: center;
@@ -484,6 +493,12 @@
             display: block;
             padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .mobile-links a.active {
+            color: var(--gold) !important;
+            border-bottom-color: var(--gold) !important;
         }
 
         .mobile-nav-actions {
@@ -4480,26 +4495,98 @@
                     }, { threshold: 0.3 });
                     counterObserver.observe(quickWrap);
                 }
-
-                /* 11. ACTIVE NAV LINK HIGHLIGHT ON SCROLL */
-                const navLinks = document.querySelectorAll('.desktop-nav-links a');
-                const sections = document.querySelectorAll('section[id]');
-                const sectionObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.getAttribute('id');
-                            navLinks.forEach(link => {
-                                link.style.color = '';
-                                if (link.getAttribute('href') === '#' + id) {
-                                    link.style.color = 'var(--gold)';
-                                }
-                            });
-                        }
-                    });
-                }, { threshold: 0.25, rootMargin: '-80px 0px -50% 0px' });
-                sections.forEach(sec => sectionObserver.observe(sec));
-
             } /* End reduced motion check */
+
+            /* 11. ACTIVE NAV LINK & SMOOTH SCROLL LOGIC */
+            const allNavLinks = document.querySelectorAll('.desktop-nav-links a, .mobile-links a');
+
+            function setActiveNavLink(sectionId) {
+                allNavLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === '#' + sectionId) {
+                        link.classList.add('active');
+                        link.style.color = 'var(--gold)';
+                    } else {
+                        link.classList.remove('active');
+                        link.style.color = '';
+                    }
+                });
+            }
+
+            // Smooth scroll & instant active state on nav link click
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1 && href.startsWith('#')) {
+                        const targetEl = document.querySelector(href);
+                        if (targetEl) {
+                            e.preventDefault();
+                            const targetId = href.substring(1);
+                            setActiveNavLink(targetId);
+
+                            const headerHeight = document.querySelector('.header')?.offsetHeight || 68;
+                            const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            window.scrollTo({
+                                top: targetPos,
+                                behavior: 'smooth'
+                            });
+
+                            // If mobile nav drawer is open, close it
+                            const mobileNav = document.getElementById('mobileNav');
+                            const menuToggle = document.getElementById('menuToggle');
+                            if (mobileNav && mobileNav.classList.contains('open')) {
+                                mobileNav.classList.remove('open');
+                                if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Robust position-based scroll spy for accurate navbar selection
+            function updateActiveNavOnScroll() {
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 68;
+                const scrollPos = window.scrollY + headerHeight + 50;
+
+                const trackedSections = [
+                    document.getElementById('vehicles'),
+                    document.getElementById('services'),
+                    document.getElementById('why-vsm'),
+                    document.getElementById('faq'),
+                    document.getElementById('contact')
+                ].filter(Boolean);
+
+                let currentId = '';
+
+                for (let i = 0; i < trackedSections.length; i++) {
+                    const sec = trackedSections[i];
+                    const secTop = sec.offsetTop;
+                    const secBottom = secTop + sec.offsetHeight;
+
+                    if (scrollPos >= secTop && scrollPos < secBottom) {
+                        currentId = sec.getAttribute('id');
+                        break;
+                    }
+                }
+
+                // If scrolled to bottom of page, highlight Contact
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 80) {
+                    currentId = 'contact';
+                }
+
+                if (currentId) {
+                    setActiveNavLink(currentId);
+                } else if (window.scrollY < 200) {
+                    // At top hero section, clear active selection
+                    allNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        link.style.color = '';
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', updateActiveNavOnScroll, { passive: true });
+            updateActiveNavOnScroll();
 
             /* 12. INSTANT BOOKING MODAL LOGIC */
             const bookingModal = document.getElementById('bookingModal');
